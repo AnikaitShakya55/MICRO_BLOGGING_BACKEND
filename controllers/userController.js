@@ -3,8 +3,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 exports.registerUser = async (req, res) => {
-  console.log("register", req.body);
-
   try {
     const { username, email, password, phone_no } = req.body || {};
     if (!username || !email || !password || !phone_no) {
@@ -32,11 +30,11 @@ exports.registerUser = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res
+    return res
       .cookie("token", token, {
         httpOnly: true,
-        sameSite: "Lax",
-        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+        secure: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .status(200)
@@ -77,8 +75,8 @@ exports.loginUser = async (req, res) => {
     return res
       .cookie("token", token, {
         httpOnly: true,
-        sameSite: "Lax",
-        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+        secure: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .status(200)
