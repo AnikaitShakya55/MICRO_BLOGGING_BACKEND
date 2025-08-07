@@ -26,8 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use("/api/blogs", blogRoutes);
-app.use("/api/users", userRoutes);
+app.use("/api", blogRoutes);
+app.use("/api", userRoutes);
 app.get("/test", (req, res) => {
   res.status(200).send("<h1>Server is Working </h1>");
 });
