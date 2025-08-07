@@ -87,8 +87,23 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+exports.logoutUser = async (req, res) => {
+  try {
+    res
+      .clearCookie("token", {
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+      })
+      .status(200)
+      .send({ message: "Logout Successful" });
+  } catch (error) {
+    console.error("Logout Error:", error.message);
+    res.status(500).send({ message: "Logout failed. Try again later." });
+  }
+};
+
 exports.currentUserDetails = async (req, res) => {
-  console.log("req.user", req.user);
   try {
     return res
       .status(200)
