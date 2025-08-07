@@ -27,7 +27,9 @@ app.get("/test", (req, res) => {
 (async () => {
   databaseConnection();
 
-  app.listen(process.env.BACKEND_PORT, () => {
-    console.log("Server is listening at port 5000");
-  });
+  // app.listen(process.env.BACKEND_PORT, () => {
+  //   console.log("Server is listening at port 5000");
+  // });
 })();
+
+module.exports = app;
