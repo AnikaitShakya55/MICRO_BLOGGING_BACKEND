@@ -21,7 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 // api's
 app.use("/api", require("./routes/blogRoutes.js"));
 app.use("/api", require("./routes/userRoutes.js"));
-
+app.get("/test", (req, res) => {
+  return res.status(200).send("<h1>Working..</h1>");
+});
 (async () => {
   databaseConnection();
 
